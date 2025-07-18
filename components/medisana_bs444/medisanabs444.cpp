@@ -109,7 +109,7 @@ namespace medisana_bs444
           uint8_t index = mPerson.person - 1;
 
           if (this->gender_sensor_[index])
-              this->gender_sensor_[index]->publish_state(mPerson.gender ? 1 : 0);
+              this->gender_sensor_[index]->publish_state(mPerson.male ? 1 : 0);
           if (this->age_sensor_[index])
               this->age_sensor_[index]->publish_state(mPerson.age);
           if (this->height_sensor_[index])
