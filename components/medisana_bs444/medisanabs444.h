@@ -77,6 +77,10 @@ namespace medisana_bs444
     void gattc_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param);
 
   public:
+    void set_gender(uint8_t i, sensor::Sensor *sensor) { gender_sensor_[i] = sensor; }
+    void set_age(uint8_t i, sensor::Sensor *sensor) { age_sensor_[i] = sensor; }
+    void set_height(uint8_t i, sensor::Sensor *sensor) { height_sensor_[i] = sensor; }
+    void set_high_activity(uint8_t i, sensor::Sensor *sensor) { high_activity_sensor_[i] = sensor; }
     void set_weight(uint8_t i, sensor::Sensor *sensor) { weight_sensor_[i] = sensor; }
     void set_bmi(uint8_t i, sensor::Sensor *sensor) { bmi_sensor_[i] = sensor; }
     void set_kcal(uint8_t i, sensor::Sensor *sensor) { kcal_sensor_[i] = sensor; }
@@ -85,6 +89,10 @@ namespace medisana_bs444
     void set_muscle(uint8_t i, sensor::Sensor *sensor) { muscle_sensor_[i] = sensor; }
     void set_bone(uint8_t i, sensor::Sensor *sensor) { bone_sensor_[i] = sensor; }
   protected:
+    sensor::Sensor *gender_sensor_[8]{nullptr};
+    sensor::Sensor *age_sensor_[8]{nullptr};
+    sensor::Sensor *height_sensor_[8]{nullptr};
+    sensor::Sensor *high_activity_sensor_[8]{nullptr};
     sensor::Sensor *weight_sensor_[8]{nullptr};
     sensor::Sensor *bmi_sensor_[8]{nullptr};
     sensor::Sensor *kcal_sensor_[8]{nullptr};

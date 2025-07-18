@@ -108,6 +108,15 @@ namespace medisana_bs444
         {
           uint8_t index = mPerson.person - 1;
 
+          if (this->gender_sensor_[index])
+              this->gender_sensor_[index]->publish_state(mPerson.gender ? 1 : 0);
+          if (this->age_sensor_[index])
+              this->age_sensor_[index]->publish_state(mPerson.age);
+          if (this->height_sensor_[index])
+              this->height_sensor_[index]->publish_state(mPerson.size);
+          if (this->high_activity_sensor_[index])
+              this->high_activity_sensor_[index]->publish_state(mPerson.highActivity ? 1 : 0);
+
           if (mWeight.valid && (mWeight.person == mPerson.person))
           {
             ESP_LOGI(TAG, "Weight %s:", mWeight.toString(mPerson).c_str());

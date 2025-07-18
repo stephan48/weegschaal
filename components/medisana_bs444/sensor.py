@@ -17,7 +17,10 @@ from esphome.const import (
 )
 
 UNIT_KILOCALORIERS="kcal"
-
+CONF_GENDER="gender"
+CONF_AGE="age"
+CONF_HEIGHT="height"
+CONF_HIGH_ACTIVITY="high_activity"
 CONF_BMI="bmi"
 CONF_KILOCALORIERS="kcal"
 CONF_FAT="fat"
@@ -42,6 +45,34 @@ for x in range(1, 8):
     MEASUREMENTS = MEASUREMENTS.extend(
        cv.Schema(
         {
+            cv.Optional("%s_%s" %(CONF_GENDER,x)): sensor.sensor_schema(
+                unit_of_measurement=UNIT_EMPTY,
+                icon=ICON_SCALE_BATHROOM,
+                accuracy_decimals=1,
+                device_class=DEVICE_CLASS_WEIGHT,
+                state_class=STATE_CLASS_MEASUREMENT,
+            ),
+            cv.Optional("%s_%s" %(CONF_AGE,x)): sensor.sensor_schema(
+                unit_of_measurement=UNIT_EMPTY,
+                icon=ICON_SCALE_BATHROOM,
+                accuracy_decimals=1,
+                device_class=DEVICE_CLASS_WEIGHT,
+                state_class=STATE_CLASS_MEASUREMENT,
+            ),
+            cv.Optional("%s_%s" %(CONF_HEIGHT,x)): sensor.sensor_schema(
+                unit_of_measurement=UNIT_EMPTY,
+                icon=ICON_SCALE_BATHROOM,
+                accuracy_decimals=1,
+                device_class=DEVICE_CLASS_WEIGHT,
+                state_class=STATE_CLASS_MEASUREMENT,
+            ),
+            cv.Optional("%s_%s" %(CONF_HIGH_ACTIVITY,x)): sensor.sensor_schema(
+                unit_of_measurement=UNIT_EMPTY,
+                icon=ICON_SCALE_BATHROOM,
+                accuracy_decimals=1,
+                device_class=DEVICE_CLASS_WEIGHT,
+                state_class=STATE_CLASS_MEASUREMENT,
+            ),
             cv.Optional("%s_%s" %(CONF_WEIGHT,x)): sensor.sensor_schema(
                 unit_of_measurement=UNIT_KILOGRAM,
                 icon=ICON_SCALE_BATHROOM,
@@ -118,6 +149,22 @@ async def to_code(config):
     cg.add(var.use_timeoffset(config[CONF_TIME_OFFSET]))
 
     for x in range(1, 8):
+        CONF_VAL = "%s_%s" %(CONF_GENDER,x)
+        if CONF_VAL in config:
+            sens = await sensor.new_sensor(config[CONF_VAL])
+            cg.add(var.set_gender(x-1, sens))
+        CONF_VAL = "%s_%s" %(CONF_AGE,x)
+        if CONF_VAL in config:
+            sens = await sensor.new_sensor(config[CONF_VAL])
+            cg.add(var.set_age(x-1, sens))
+        CONF_VAL = "%s_%s" %(CONF_HEIGHT,x)
+        if CONF_VAL in config:
+            sens = await sensor.new_sensor(config[CONF_VAL])
+            cg.add(var.set_height(x-1, sens))
+        CONF_VAL = "%s_%s" %(CONF_HIGH_ACTIVITY,x)
+        if CONF_VAL in config:
+            sens = await sensor.new_sensor(config[CONF_VAL])
+            cg.add(var.set_high_activity(x-1, sens))
         CONF_VAL = "%s_%s" %(CONF_WEIGHT,x)
         if CONF_VAL in config:
             sens = await sensor.new_sensor(config[CONF_VAL])
