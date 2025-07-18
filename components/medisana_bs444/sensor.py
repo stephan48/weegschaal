@@ -62,7 +62,7 @@ for x in range(1, 8):
             cv.Optional("%s_%s" %(CONF_HEIGHT,x)): sensor.sensor_schema(
                 unit_of_measurement=UNIT_EMPTY,
                 icon=ICON_SCALE_BATHROOM,
-                accuracy_decimals=1,
+                accuracy_decimals=2,
                 device_class=DEVICE_CLASS_WEIGHT,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
