@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import sensor, ble_client, time
 
 from esphome.const import (
-    STATE_CLASS_MEASUREMENT,
+    STATE_CLASS_MEASUREMENT, UNIT_CENTIMETER 
     UNIT_KILOGRAM,
     UNIT_EMPTY,
     UNIT_PERCENT,
@@ -55,12 +55,12 @@ for x in range(1, 8):
             cv.Optional("%s_%s" %(CONF_AGE,x)): sensor.sensor_schema(
                 unit_of_measurement=UNIT_EMPTY,
                 icon=ICON_SCALE_BATHROOM,
-                accuracy_decimals=1,
+                accuracy_decimals=0,
                 device_class=DEVICE_CLASS_WEIGHT,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
             cv.Optional("%s_%s" %(CONF_HEIGHT,x)): sensor.sensor_schema(
-                unit_of_measurement=UNIT_EMPTY,
+                unit_of_measurement=UNIT_CENTIMETER,
                 icon=ICON_SCALE_BATHROOM,
                 accuracy_decimals=2,
                 device_class=DEVICE_CLASS_WEIGHT,
