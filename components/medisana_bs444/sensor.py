@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import sensor, ble_client, time
 
 from esphome.const import (
-    STATE_CLASS_MEASUREMENT, UNIT_CENTIMETER 
+    STATE_CLASS_MEASUREMENT, UNIT_CENTIMETER,
     UNIT_KILOGRAM,
     UNIT_EMPTY,
     UNIT_PERCENT,
